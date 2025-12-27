@@ -10,14 +10,42 @@ import axiosInstance from '../api/axios'; // Assuming this path is correct
 
 // --- Mock Data for Dropdowns (Consider fetching these from an API in a real app) ---
 const MOCK_CROPS = ['Rice', 'Wheat', 'Maize', 'Soybean', 'Cotton', 'Potato', 'Onion', 'Tomato', 'Sugarcane', 'Pulses'];
-const MOCK_STATES = ['Punjab', 'Haryana', 'Uttar Pradesh', 'Maharashtra', 'Karnataka', 'Bihar', 'West Bengal', 'Andhra Pradesh', 'Tamil Nadu', 'Kerala'];
+const MOCK_STATES = [
+  'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 
+  'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 
+  'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 
+  'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
+];
+
 const MOCK_CITIES = {
-  Punjab: ['Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala'],
-  Haryana: ['Karnal', 'Hisar', 'Rohtak', 'Ambala', 'Panipat'],
-  'Uttar Pradesh': ['Lucknow', 'Meerut', 'Kanpur', 'Varanasi', 'Agra'],
-  Maharashtra: ['Nashik', 'Pune', 'Nagpur', 'Aurangabad', 'Mumbai'], // Added Mumbai as per curl
-  Karnataka: ['Bangalore', 'Mysore', 'Hubli', 'Mangalore'],
-  // Add other states and their cities as needed
+  'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Kurnool', 'Rajahmundry', 'Tirupati', 'Kadapa'],
+  'Arunachal Pradesh': ['Itanagar', 'Naharlagun', 'Pasighat', 'Tezpur', 'Bomdila'],
+  'Assam': ['Guwahati', 'Silchar', 'Dibrugarh', 'Jorhat', 'Nagaon', 'Tinsukia', 'Tezpur'],
+  'Bihar': ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur', 'Purnia', 'Darbhanga', 'Bihar Sharif', 'Arrah'],
+  'Chhattisgarh': ['Raipur', 'Bhilai', 'Korba', 'Bilaspur', 'Durg', 'Rajnandgaon'],
+  'Goa': ['Panaji', 'Margao', 'Vasco da Gama', 'Mapusa', 'Ponda'],
+  'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar', 'Jamnagar', 'Junagadh', 'Gandhinagar'],
+  'Haryana': ['Karnal', 'Hisar', 'Rohtak', 'Ambala', 'Panipat', 'Faridabad', 'Gurgaon', 'Sonipat'],
+  'Himachal Pradesh': ['Shimla', 'Dharamshala', 'Solan', 'Mandi', 'Kullu', 'Hamirpur'],
+  'Jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro', 'Deoghar', 'Hazaribagh'],
+  'Karnataka': ['Bangalore', 'Mysore', 'Hubli', 'Mangalore', 'Belgaum', 'Gulbarga', 'Davangere', 'Bellary'],
+  'Kerala': ['Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Thrissur', 'Kollam', 'Palakkad', 'Alappuzha', 'Kannur'],
+  'Madhya Pradesh': ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur', 'Ujjain', 'Sagar', 'Dewas', 'Satna'],
+  'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Aurangabad', 'Solapur', 'Amravati', 'Kolhapur'],
+  'Manipur': ['Imphal', 'Thoubal', 'Bishnupur', 'Churachandpur'],
+  'Meghalaya': ['Shillong', 'Tura', 'Jowai', 'Nongpoh'],
+  'Mizoram': ['Aizawl', 'Lunglei', 'Saiha', 'Champhai'],
+  'Nagaland': ['Kohima', 'Dimapur', 'Mokokchung', 'Tuensang'],
+  'Odisha': ['Bhubaneswar', 'Cuttack', 'Rourkela', 'Berhampur', 'Sambalpur', 'Puri', 'Balasore'],
+  'Punjab': ['Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala', 'Bathinda', 'Mohali', 'Firozpur', 'Hoshiarpur'],
+  'Rajasthan': ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota', 'Bikaner', 'Ajmer', 'Bhilwara', 'Alwar'],
+  'Sikkim': ['Gangtok', 'Namchi', 'Gyalshing', 'Mangan'],
+  'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Tirunelveli', 'Erode', 'Vellore'],
+  'Telangana': ['Hyderabad', 'Warangal', 'Nizamabad', 'Khammam', 'Karimnagar', 'Ramagundam'],
+  'Tripura': ['Agartala', 'Dharmanagar', 'Udaipur', 'Kailashahar'],
+  'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Ghaziabad', 'Agra', 'Varanasi', 'Meerut', 'Allahabad', 'Bareilly'],
+  'Uttarakhand': ['Dehradun', 'Haridwar', 'Roorkee', 'Haldwani', 'Rudrapur', 'Kashipur'],
+  'West Bengal': ['Kolkata', 'Howrah', 'Durgapur', 'Asansol', 'Siliguri', 'Malda', 'Bardhaman', 'Kharagpur']
 };
 const MOCK_SEASONS = ['Kharif', 'Rabi', 'Summer', 'Whole Year', 'Zaid']; // Added Zaid as per curl
 
